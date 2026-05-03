@@ -1,6 +1,3 @@
-
-
-
 class Process:
     _next_id = 1
 
@@ -9,7 +6,6 @@ class Process:
         Process._next_id += 1
         self.arrival_time = arrival_time
         self.burst_time = burst_time
-
 
     @classmethod
     def reset_ids(cls) -> None:
