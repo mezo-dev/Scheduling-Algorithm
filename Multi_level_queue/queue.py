@@ -1,15 +1,12 @@
-from .process import Process
+from process import Process
+from collections import deque
 
+q0 = deque()
+q1 = deque()
+q2 = deque()
 
-class Queue:
-    def __init__(self):
-        self.queue = []
-        self.quantum = 8
+QUANTUMS = [8, 12, 16]
 
-    def add_process(self, process: Process):
-        self.queue.append(process)
-        process_time = process.burst_time - self.quantum
-        if process_time == 0:
-            process.execute()
-        elif process_time < 0:
-            ...
+q0.append(Process("Process 1", 2, 7))
+q0.append(Process("Process 2", 5, 14))
+q0.append(Process("Process 3", 8, 23))

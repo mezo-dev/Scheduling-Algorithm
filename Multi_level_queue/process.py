@@ -1,14 +1,16 @@
-from .states import State
+from states import State
 
 
 class Process:
     _next_id = 1
 
-    def __init__(self, arrival_time: int, burst_time: int) -> None:
+    def __init__(self, name: str, arrival_time: int, burst_time: int) -> None:
         self.id = Process._next_id
         Process._next_id += 1
+        self.name = name
         self.arrival_time = arrival_time
         self.burst_time = burst_time
+        self.remaining_time = burst_time
         self.state = State.READY
 
     @classmethod
@@ -26,3 +28,28 @@ class Process:
 
     def execute(self):
         print(f"Executing Process {self.id}...")
+
+
+def run_process(process: Process, quantum: int) -> bool:
+    cpu_time = min(process.remaining_time, quantum)
+
+    print(
+        f"Running {process.name} "
+        f"for {cpu_time} units "
+        f"(remaining before={process.remaining_time})"
+    )
+
+    process.remaining_time -= cpu_time
+    process.mark_as_running()
+
+    if process.remaining_time == 0:
+        process.mark_as_terminated()
+        print(f"{process.name} Finished.\n")
+        return True
+    else:
+        print(
+            f"Running {process.name} "
+            f"for {cpu_time} units "
+            f"(remaining before={process.remaining_time})"
+        )
+        return False
