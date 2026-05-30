@@ -26,9 +26,6 @@ class Process:
     def mark_as_terminated(self):
         self.state = State.TERMINATED
 
-    def execute(self):
-        print(f"Executing Process {self.id}...")
-
 
 def run_process(process: Process, quantum: int) -> bool:
     cpu_time = min(process.remaining_time, quantum)
