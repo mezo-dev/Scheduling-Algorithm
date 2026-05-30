@@ -25,6 +25,14 @@ Python 3.
 
 ## Running it
 
+With [just](https://github.com/casey/just):
+
+```
+just run
+```
+
+Or directly:
+
 ```
 python3 scheduler.py
 ```
